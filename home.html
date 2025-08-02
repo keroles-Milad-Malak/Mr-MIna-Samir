@@ -48,17 +48,40 @@
 </head>
 
 <body>
+   
     <!-- Navbar -->
-<nav class="navbar navbar-expand-lg bg-primary sticky-top">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <span id="switch-text" class="brand-switch">English Learning</span>
-        </a>
-        <div class="d-flex align-items-center">
-            <span class="navbar-text text-white me-3" id="user-email">Welcome</span>
+    <nav class="navbar navbar-expand-lg bg-primary navbar-dark sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="#">English Learning</a>
+    
+            <!-- Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+                aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <!-- Collapsible Content -->
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#choosed">Educationa</a>
+                    </li>
+    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+    
+                <!-- User Welcome (desktop & mobile) -->
+                <span class="navbar-text text-white" id="user-email">Welcome</span>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+
 
 
     <!-- Welcome Section -->
@@ -134,7 +157,7 @@
     
 
 <!-- Main Content -->
-<div class="container mt-5">
+<div class="container mt-5" id="choosed">
     <h2 class="text-center mb-5">Choose Your Educational Stage</h2>
     <div class="row justify-content-center g-4">
 
@@ -222,7 +245,7 @@
     </section>
 
     <!-- Contact Us Section -->
-    <section class="contact py-5 bg-white">
+    <section class="contact py-5 bg-white" id="contact">
         <div class="container">
             <h2 class="text-center text-primary fw-bold mb-5">Contact Us</h2>
             <div class="row justify-content-center">

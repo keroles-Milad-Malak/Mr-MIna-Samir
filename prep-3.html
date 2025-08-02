@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr / Mina - prep-3 page</title>
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="css/all.min.css">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #eaf6ff, #f9fbfc);
+            min-height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .subject-card {
+            border-radius: 15px;
+            padding: 30px 20px;
+            text-align: center;
+            height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .subject-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .subject-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Prep 3 Subjects</a>
+            <div class="d-flex">
+                <span class="navbar-text text-white me-3" id="user-email">Welcome</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- داخل البودي (مكان الكروت) -->
+    <div class="container mt-5">
+        <h2 class="text-center mb-5">Choose Subject</h2>
+        <div class="row g-4 justify-content-center">
+
+            <!-- Grammar -->
+            <div class="col-md-5 col-lg-3">
+                <div class="subject-card bg-light text-dark">
+                    <div class="subject-icon">📘</div>
+                    <div class="subject-title">Grammar</div>
+                    <a href="prep-3-grammer.html" class="btn btn-primary btn-sm">Enter</a>
+                </div>
+            </div>
+
+            <!-- Vocabulary -->
+            <div class="col-md-5 col-lg-3">
+                <div class="subject-card bg-light text-dark">
+                    <div class="subject-icon">📗</div>
+                    <div class="subject-title">Vocabulary</div>
+                    <a href="prep-3-vocabulary.html" class="btn btn-primary btn-sm">Enter</a>
+                </div>
+            </div>
+
+            <!-- Tests -->
+            <div class="col-md-5 col-lg-3">
+                <div class="subject-card bg-light text-dark">
+                    <div class="subject-icon">📝</div>
+                    <div class="subject-title">Tests</div>
+                    <a href="prep-3-test.html" class="btn btn-primary btn-sm">Enter</a>
+                </div>
+            </div>
+
+            <!-- FAQs -->
+            <div class="col-md-5 col-lg-3 mb-2">
+                <div class="subject-card bg-light text-dark">
+                    <div class="subject-icon">❓</div>
+                    <div class="subject-title">FAQs</div>
+                    <a href="prep-3-faqs.html" class="btn btn-primary btn-sm">Enter</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Firebase Auth -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAuF7MittFQZNu0bcXXrLVMFWwcW3uCdM8",
+            authDomain: "mr-mina-f514b.firebaseapp.com",
+            projectId: "mr-mina-f514b",
+            storageBucket: "mr-mina-f514b.appspot.com",
+            messagingSenderId: "654118185717",
+            appId: "1:654118185717:web:0b744694e8f5804f7973bc"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        const userEmailSpan = document.getElementById("user-email");
+        const logoutBtn = document.getElementById("logoutBtn");
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                userEmailSpan.textContent = `Welcome, ${user.email}`;
+            } else {
+                window.location.href = "login.html";
+            }
+        });
+
+        logoutBtn.addEventListener("click", () => {
+            signOut(auth).then(() => {
+                window.location.href = "login.html";
+            });
+        });
+    </script>
+
+    <!-- fontawesome -->
+    <script src="js/all.min.js"></script>
+    <!-- bootstrap -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

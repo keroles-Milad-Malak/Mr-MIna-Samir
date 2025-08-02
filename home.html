@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mr / Mina - Home Page</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .enter-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-weight: bold;
+            font-size: 20px;
+            padding: 10px 20px;
+            border-radius: 30px;
+        }
+    
+        .enter-btn:hover {
+            background-color: #343a40;
+            color: #fff;
+        }
+    
+        .enter-btn .arrow-left,
+        .enter-btn .arrow-right {
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+    
+        .enter-btn:hover .arrow-left {
+            transform: translateX(-5px);
+        }
+    
+        .enter-btn:hover .arrow-right {
+            transform: translateX(5px);
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-primary sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <span id="switch-text" class="brand-switch">English Learning</span>
+        </a>
+        <div class="d-flex align-items-center">
+            <span class="navbar-text text-white me-3" id="user-email">Welcome</span>
+        </div>
+    </div>
+</nav>
+
+
+    <!-- Welcome Section -->
+    <section class="welcome-section text-center py-5">
+        <div class="overlay"></div>
+        <div class="container position-relative">
+            <h1 class="welcome-title mb-3">Welcome to <span class="text-gradient">English Learning</span></h1>
+            <p class="lead fade-in-text">Start your journey to mastering English today!</p>
+        </div>
+    </section>
+
+    <!-- about -->
+    <!-- About Section -->
+    <div class="about py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Image -->
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <img src="./image/image-mr.jfif" alt="About Us"
+                        class="img-fluid rounded shadow-lg animate__animated animate__fadeInLeft" />
+                </div>
+    
+                <!-- Content -->
+                <!-- Content -->
+                <div class="content animate__animated animate__fadeInRight">
+                    <h2 class="mb-3 text-primary fw-bold">Mr. Mina Samir</h2>
+                    <p class="lead text-dark mb-3">A passionate <strong>Teacher of English</strong> with years of experience in language
+                        education and test preparation.</p>
+                
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            <strong>IELTS Instructor</strong>
+                        </li>
+                        <li class="mb-2">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            <strong>Certified Translator & Interpreter</strong>
+                        </li>
+                        <li class="mb-2">
+                            <i class="bi bi-check-circle-fill text-success me-2"></i>
+                            <strong>FELT Trainer – American University in Cairo</strong>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- start landing -->
+    <div class="landing bg-light">
+        <div class="container">
+            <div class="slider-container">
+                <button class="prev-btn">Previous</button>
+                <div class="slider">
+                    <div class="img-id">Image 1</div>
+                    <img class="active" src="image/slide-1.jpg" alt="image 1">
+                    <img src="image/slide-2.jfif" alt="image 2">
+                    <img src="image/slide-3.jfif" alt="image 3">
+                    <img src="image/slide-4.jfif" alt="image 4">
+                    <img src="image/slide-5.jfif" alt="image 5">
+                    <img src="image/slide-6.jfif" alt="image 6">
+                    <img src="image/slide-7.jfif" alt="image 7">
+                    <img src="image/slide-8.jfif" alt="image 8">
+                </div>
+                <button class="next-btn">Next</button>
+            </div>
+            <div class="gallery-container pt-3 pb-4"></div>
+        </div>
+    </div>
+    <!-- end landing -->
+
+    
+
+<!-- Main Content -->
+<div class="container mt-5">
+    <h2 class="text-center mb-5">Choose Your Educational Stage</h2>
+    <div class="row justify-content-center g-4">
+
+        <!-- Stage Card Example -->
+        <div class="col-md-5 col-lg-4">
+            <div class="card-stage bg-info text-white text-center p-4 rounded shadow-sm">
+                <div class="stage-title mb-4 fs-4 fw-bold">Preparatory Stage</div>
+                <a href="prep.html" class="btn btn-light enter-btn d-flex align-items-center justify-content-center">
+                    <span class="arrow-left fs-3">→</span> Enter <span class="arrow-right fs-3">←</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-5 col-lg-4">
+            <div class="card-stage bg-success text-white text-center p-4 rounded shadow-sm">
+                <div class="stage-title mb-4 fs-4 fw-bold">Secondary Stage</div>
+                <a href="sec.html" class="btn btn-light enter-btn d-flex align-items-center justify-content-center">
+                    <span class="arrow-left fs-3">→</span> Enter <span class="arrow-right fs-3">←</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-5 col-lg-4">
+            <div class="card-stage bg-secondary text-white text-center p-4 rounded shadow-sm">
+                <div class="stage-title mb-4 fs-4 fw-bold">Lesson videos</div>
+                <a href="allvideo.html" class="btn btn-light enter-btn d-flex align-items-center justify-content-center">
+                    <span class="arrow-left fs-3">→</span> Enter <span class="arrow-right fs-3">←</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-5 col-lg-4">
+            <div class="card-stage bg-danger text-white text-center p-4 rounded shadow-sm">
+                <div class="stage-title mb-4 fs-4 fw-bold">Frequently Asked Questions</div>
+                <a href="allfaqs.html" class="btn btn-light enter-btn d-flex align-items-center justify-content-center">
+                    <span class="arrow-left fs-3">→</span> Enter <span class="arrow-right fs-3">←</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+    <!-- Features Section -->
+    <section class="features py-5 bg-light">
+        <div class="container">
+            <h3 class="text-center text-primary mb-5 fw-bold display-6 animate__animated animate__fadeInDown">
+                Why Choose Mr. Mina?
+            </h3>
+            <div class="row text-center">
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="feature-box p-4 shadow-sm position-relative">
+                        <i class="bi bi-award fs-1 text-success mb-3"></i>
+                        <h5 class="fw-bold">Certified Expert</h5>
+                        <p class="text-muted small">Official certifications in teaching and translation.</p>
+                        <span class="hover-fill"></span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="feature-box p-4 shadow-sm position-relative">
+                        <i class="bi bi-people fs-1 text-info mb-3"></i>
+                        <h5 class="fw-bold">Interactive Teaching</h5>
+                        <p class="text-muted small">Engaging methods tailored to student needs.</p>
+                        <span class="hover-fill"></span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="feature-box p-4 shadow-sm position-relative">
+                        <i class="bi bi-bar-chart-line fs-1 text-warning mb-3"></i>
+                        <h5 class="fw-bold">Proven Results</h5>
+                        <p class="text-muted small">Students consistently score high in IELTS exams.</p>
+                        <span class="hover-fill"></span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="feature-box p-4 shadow-sm position-relative">
+                        <i class="bi bi-clock-history fs-1 text-danger mb-3"></i>
+                        <h5 class="fw-bold">Flexible Scheduling</h5>
+                        <p class="text-muted small">Classes that fit your time and pace.</p>
+                        <span class="hover-fill"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section class="contact py-5 bg-white">
+        <div class="container">
+            <h2 class="text-center text-primary fw-bold mb-5">Contact Us</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form class="bg-light p-4 rounded shadow-sm">
+                        <div class="mb-3">
+                            <label for="name" class="form-label fw-semibold">Your Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter your name" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label fw-semibold">Email address</label>
+                            <input type="email" class="form-control" id="email" placeholder="name@example.com" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label fw-semibold">Message</label>
+                            <textarea class="form-control" id="message" rows="4" placeholder="Type your message..."
+                                required></textarea>
+                        </div>
+                        <a id="whatsappLink" href="#" class="btn btn-success w-100" target="_blank">
+                            <i class="bi bi-whatsapp me-2"></i>Send via WhatsApp
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer text-white pt-4 pb-2" style="background-color: #1e2a38;">
+        <div class="container">
+            <div class="row text-center text-md-start">
+    
+                <!-- Logo / About -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold text-warning">Mr. Mina Samir</h5>
+                    <p class="small">IELTS Instructor & Certified Translator. Helping students reach their full potential in
+                        English language mastery.</p>
+                </div>
+    
+    
+                <!-- Contact Info -->
+                <div class="col-md-4 mb-4">
+                    <h5 class="fw-bold text-warning">Contact</h5>
+                    <ul class="list-unstyled small">
+                        <li><i class="bi bi-telephone"></i> +20 1002005610</li>
+                        <li><i class="bi bi-envelope"></i> minasamir@example.com</li>
+                        <li><i class="bi bi-geo-alt"></i> El-Minya, Egypt</li>
+                        <li>
+                            <a href="https://wa.me/201002005610" class="btn btn-success btn-sm mt-2" target="_blank">
+                                <i class="bi bi-whatsapp"></i> Chat on WhatsApp
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    
+            <hr class="border-light" />
+    
+            <div class="text-center small">
+                &copy; 2025 Mr. Mina Samir. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+
+
+  
+
+
+    <!-- Firebase Logic -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAuF7MittFQZNu0bcXXrLVMFWwcW3uCdM8",
+            authDomain: "mr-mina-f514b.firebaseapp.com",
+            projectId: "mr-mina-f514b",
+            storageBucket: "mr-mina-f514b.firebasestorage.app",
+            messagingSenderId: "654118185717",
+            appId: "1:654118185717:web:0b744694e8f5804f7973bc"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        const userEmailSpan = document.getElementById("user-email");
+        const logoutBtn = document.getElementById("logoutBtn");
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                userEmailSpan.textContent = `Welcome, ${user.email}`;
+            } else {
+                window.location.href = "login.html";
+            }
+        });
+
+        logoutBtn.addEventListener("click", () => {
+            signOut(auth).then(() => {
+                window.location.href = "login.html";
+            });
+        });
+    </script>
+
+    <!-- Bootstrap Bundle -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- Font Awesome -->
+    <script src="js/all.min.js"></script>
+    <script src="js/main.js"></script>
+    
+</body>
+
+</html>

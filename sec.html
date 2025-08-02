@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mr / Mina - Sec Page</title>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="css/all.min.css" />
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #e0f7fa, #e1f5fe);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .navbar {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-weight: bold;
+            color: #333;
+            animation: fadeInDown 0.8s ease-in-out;
+        }
+
+        .card-year {
+            border-radius: 15px;
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .card-year:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .year-title {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .btn-enter {
+            border-radius: 25px;
+            font-weight: bold;
+            padding: 10px 25px;
+        }
+
+        /* Unique gradients */
+        .prep1 {
+            background: linear-gradient(135deg, #f7971e, #ffd200);
+        }
+
+        .prep2 {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .prep3 {
+            background: linear-gradient(135deg, #43cea2, #185a9d);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Secondary Stage</a>
+            <div class="d-flex">
+                <span class="navbar-text text-white me-3" id="user-email">Welcome</span>
+                <button class="btn btn-outline-light btn-sm" id="logoutBtn">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <h2 class="text-center mb-5">Choose Your Grade</h2>
+        <div class="row justify-content-center g-4">
+
+            <!-- Prep 1 -->
+            <div class="col-md-4">
+                <div class="card-year prep1">
+                    <div class="year-title">Secondary 1</div>
+                    <a href="sec-1.html" class="btn btn-light btn-enter">Enter</a>
+                </div>
+            </div>
+
+            <!-- Prep 2 -->
+            <div class="col-md-4">
+                <div class="card-year prep2">
+                    <div class="year-title">Secondary 2</div>
+                    <a href="sec-2.html" class="btn btn-light btn-enter">Enter</a>
+                </div>
+            </div>
+
+            <!-- Prep 3 -->
+            <div class="col-md-4">
+                <div class="card-year prep3">
+                    <div class="year-title">Secondary 3</div>
+                    <a href="sec-3.html" class="btn btn-light btn-enter">Enter</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Firebase Auth Logic -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAuF7MittFQZNu0bcXXrLVMFWwcW3uCdM8",
+            authDomain: "mr-mina-f514b.firebaseapp.com",
+            projectId: "mr-mina-f514b",
+            storageBucket: "mr-mina-f514b.firebasestorage.app",
+            messagingSenderId: "654118185717",
+            appId: "1:654118185717:web:0b744694e8f5804f7973bc"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        const userEmailSpan = document.getElementById("user-email");
+        const logoutBtn = document.getElementById("logoutBtn");
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                userEmailSpan.textContent = `Welcome, ${user.email}`;
+            } else {
+                window.location.href = "login.html";
+            }
+        });
+
+        logoutBtn.addEventListener("click", () => {
+            signOut(auth).then(() => {
+                window.location.href = "login.html";
+            });
+        });
+    </script>
+
+    <!-- FontAwesome -->
+    <script src="js/all.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

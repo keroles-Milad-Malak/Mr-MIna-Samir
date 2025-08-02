@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAQs</title>
+<!-- Bootstrap -->
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<!-- Font Awesome -->
+<link rel="stylesheet" href="css/all.min.css" />
+    <style>
+        body {
+            background-color: #f1f5f9;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 40px 10px;
+        }
+
+        .faq-box {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            color: #0075ff;
+        }
+
+        .faq-answer {
+            margin-top: 10px;
+            color: #333;
+        }
+
+        .admin-section {
+            background: #e9f5ff;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Frequently Asked Questions</h2>
+
+        <!-- Admin Add Section -->
+        <div id="adminSection" class="admin-section d-none">
+            <h4>Add a new question</h4>
+            <input id="questionInput" class="form-control mb-2" placeholder="Write the question">
+            <textarea id="answerInput" class="form-control mb-2" placeholder="Write the answer" rows="3"></textarea>
+            <button onclick="addFAQ()" class="btn btn-primary w-100">Add</button>
+        </div>
+
+        <!-- FAQs Display -->
+        <div id="faqsContainer"></div>
+    </div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+
+    <script>
+        // Firebase config
+        const firebaseConfig = {
+            databaseURL: "https://mr-mina-f514b-default-rtdb.firebaseio.com/"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        const faqsRef = database.ref("prep-sec1-faqs");
+
+        // Display FAQs
+        faqsRef.on("value", (snapshot) => {
+            const data = snapshot.val();
+            const container = document.getElementById("faqsContainer");
+            container.innerHTML = "";
+
+            for (let key in data) {
+                const faq = data[key];
+                const box = document.createElement("div");
+                box.className = "faq-box";
+                box.innerHTML = `
+          <div class="faq-question">${faq.question}</div>
+          <div class="faq-answer">${faq.answer}</div>
+        `;
+                container.appendChild(box);
+            }
+        });
+
+        // Add FAQ (admin only)
+        function addFAQ() {
+            const question = document.getElementById("questionInput").value.trim();
+            const answer = document.getElementById("answerInput").value.trim();
+            if (question && answer) {
+                faqsRef.push({ question, answer });
+                document.getElementById("questionInput").value = "";
+                document.getElementById("answerInput").value = "";
+            }
+        }
+
+        // Show input only for admin
+        const role = localStorage.getItem("role");
+        if (role === "admin") {
+            document.getElementById("adminSection").classList.remove("d-none");
+        }
+    </script>
+
+    <!-- Bootstrap Bundle -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- Font Awesome -->
+    <script src="js/all.min.js"></script>
+</body>
+
+</html>

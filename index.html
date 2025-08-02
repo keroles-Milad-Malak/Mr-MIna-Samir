@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="css/all.min.css">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        :root {
+            --blue-color: #0075ff;
+            --blue-alt-color: #0d69d5;
+            --orange-color: #f59e0b;
+            --green-color: #22c55e;
+            --red-color: #f44336;
+            --grey-color: #888;
+            --background-color: #f1f5f9;
+        }
+    
+        body {
+            background-image: url('../image/background.png');
+            /* ← غير اسم الصورة حسب الحاجة */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(3px);
+        }
+    
+       
+        .login-box h2 {
+            margin-bottom: 25px;
+            text-align: center;
+            color: var(--blue-color);
+        }
+    
+        .form-control:focus {
+            border: 1px solid var(--blue-color);
+            box-shadow: none;
+        }
+    
+        .form-control:hover {
+            border: 1px solid var(--blue-color);
+        }
+    
+        .error-message {
+            color: var(--red-color);
+            margin-top: 10px;
+            text-align: center;
+        }
+    
+        .btn-login {
+            background-color: var(--blue-color);
+            color: white;
+        }
+    
+        .btn-login:hover {
+            background-color: var(--blue-alt-color);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-box">
+        <h2>Sign - In</h2>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="example@email.com">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="********">
+        </div>
+        <button class="btn btn-login w-100" onclick="login()">Sign In</button>
+        <div id="errorMessage" class="error-message"></div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAuF7MittFQZNu0bcXXrLVMFWwcW3uCdM8",
+            authDomain: "mr-mina-f514b.firebaseapp.com",
+            projectId: "mr-mina-f514b",
+            storageBucket: "mr-mina-f514b.appspot.com",
+            messagingSenderId: "654118185717",
+            appId: "1:654118185717:web:0b744694e8f5804f7973bc"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        window.login = function () {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    const role = (email === "mr-mina@admin.com") ? "admin" : "student";
+                    localStorage.setItem("role", role);
+                    localStorage.setItem("user", email);
+                    window.location.href = "home.html";
+                })
+                .catch((error) => {
+                    alert("Login failed: " + error.message);
+                });
+        };
+    </script>
+    <!-- fontawesome -->
+    <script src="js/all.min.js"></script>
+    <!-- bootstrap -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prep-1 Vocabulary</title>
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="css/all.min.css">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        .card-custom {
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+
+        .card-custom:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 123, 255, 0.2);
+        }
+
+        .btn-rounded {
+            border-radius: 30px;
+        }
+
+        .input-icon {
+            position: relative;
+        }
+
+        .input-icon i {
+            position: absolute;
+            top: 50%;
+            left: 12px;
+            transform: translateY(-50%);
+            color: #888;
+        }
+
+        .input-icon input {
+            padding-left: 35px;
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+    <div class="container py-5">
+        <h2 class="text-center text-primary mb-4"><i class="fas fa-book"></i> Prep-1 Vocabulary Lessons</h2>
+
+        <!-- أدوات الادمن -->
+        <div id="admin-controls" class="mb-4 d-none">
+            <div class="card border-0 shadow">
+                <div class="card-header bg-primary text-white rounded-top">
+                    <i class="fas fa-plus-circle me-1"></i> Add New Lesson
+                </div>
+                <div class="card-body bg-white">
+                    <div class="row g-3">
+                        <div class="col-md-6 input-icon">
+                            <i class="fas fa-heading"></i>
+                            <input type="text" class="form-control" placeholder="Lesson Title" id="title">
+                        </div>
+                        <div class="col-md-6 input-icon">
+                            <i class="fas fa-link"></i>
+                            <input type="text" class="form-control" placeholder="Lesson Link (PDF or Video)" id="link">
+                        </div>
+                        <div class="col-12 text-end">
+                            <button class="btn btn-primary btn-rounded px-4" onclick="saveLesson()">
+                                <i class="fas fa-plus"></i> Add
+                            </button>
+                            <button class="btn btn-danger btn-rounded px-4 ms-2" onclick="deleteAllLessons()">
+                                <i class="fas fa-trash-alt"></i> Delete All
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- عرض الدروس -->
+        <div id="lessonContainer" class="row gy-4 mt-4"></div>
+    </div>
+
+    <script>
+        const API_URL = "https://mr-mina-f514b-default-rtdb.firebaseio.com/Prep_1_Vocabulary";
+        let isAdmin = false;
+
+        function showLesson() {
+            fetch(API_URL + ".json")
+                .then(res => res.json())
+                .then(data => {
+                    const container = document.getElementById("lessonContainer");
+                    container.innerHTML = "";
+
+                    for (let id in data) {
+                        const lesson = data[id];
+                        const card = document.createElement("div");
+                        card.className = "col-md-4";
+
+                        card.innerHTML = `
+              <div class="card card-custom h-100">
+                <div class="card-body d-flex flex-column justify-content-between">
+                  <h5 class="card-title text-primary"><i class="fas fa-book-open me-2"></i>${lesson.Title}</h5>
+                  <a href="${lesson.Link}" target="_blank" class="btn btn-outline-primary btn-sm mt-2">
+                    <i class="fas fa-eye"></i> View Lesson
+                  </a>
+                  ${isAdmin ? `
+                    <button class="btn btn-outline-danger btn-sm mt-2" onclick="deleteLesson('${id}')">
+                      <i class="fas fa-trash"></i> Delete
+                    </button>
+                  ` : ''}
+                </div>
+              </div>
+            `;
+
+                        container.appendChild(card);
+                    }
+                })
+                .catch(err => console.log(err));
+        }
+
+        function saveLesson() {
+            const title = document.getElementById("title").value;
+            const link = document.getElementById("link").value;
+
+            if (!title || !link) return alert("Please fill all fields");
+
+            fetch(API_URL + ".json", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ Title: title, Link: link })
+            })
+                .then(() => {
+                    document.getElementById("title").value = "";
+                    document.getElementById("link").value = "";
+                    showLesson();
+                })
+                .catch(err => console.log(err));
+        }
+
+        function deleteLesson(id) {
+            if (confirm("Are you sure you want to delete this lesson?")) {
+                fetch(`${API_URL}/${id}.json`, {
+                    method: "DELETE"
+                })
+                    .then(() => showLesson())
+                    .catch(err => console.log(err));
+            }
+        }
+
+        function deleteAllLessons() {
+            if (confirm("Are you sure you want to delete ALL lessons?")) {
+                fetch(API_URL + ".json", {
+                    method: "DELETE"
+                })
+                    .then(() => showLesson())
+                    .catch(err => console.log(err));
+            }
+        }
+
+        window.onload = function () {
+            const role = localStorage.getItem("role");
+            if (role === "admin") {
+                isAdmin = true;
+                document.getElementById("admin-controls").classList.remove("d-none");
+            }
+            showLesson();
+        };
+    </script>
+
+    <!-- fontawesome -->
+    <script src="js/all.min.js"></script>
+    <!-- bootstrap -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
